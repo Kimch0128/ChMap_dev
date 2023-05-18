@@ -13,7 +13,10 @@ public class ChMap extends LinkedHashMap<String, Object> implements Serializable
 	public boolean set(String key, Object value) {
 		boolean result = true;
 		try {
-			put(key,value);
+			if(containsKey(key))
+				put(key,value);
+			else
+				result = false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;
