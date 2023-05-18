@@ -60,22 +60,23 @@ public class ChMap extends LinkedHashMap<String, Object> implements Serializable
 			return (Double) null;
 		}
 	}
-//	public boolean addMap(ChMap chMap) {
-//		boolean result = true;
-//		try {
-//			chMap.forEach((k,v)->{
-//				boolean isExists = containsKey(k);
-//				
-//				if(!isExists)
-//					set(k,v);
-//				else
-//					set("dup_"+k,v);
-//			});
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//			result = false;
-//		}
-//		return result;
-//	}
+	public boolean addMap(ChMap chMap) {
+		boolean result = true;
+		try {
+			Set<String> keys = chMap.keySet();
+			
+			for(String key : keys) {
+				boolean isExists = containsKey(key);
+				if(!isExists)
+					set(key,chMap.get(key));
+				else
+					set("dup_"+key,chMap.get(key));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = false;
+		}
+		return result;
+	}
 }
